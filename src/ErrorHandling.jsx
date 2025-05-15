@@ -1,15 +1,21 @@
 import { ErrorBoundary } from "react-error-boundary";
+import {useLanguage} from "../context/Context.jsx";
+import translations from "../context/Translate.jsx";
 
-const FallbackComponent = ({ error, resetErrorBoundary }) => (
-    <div className="error-boundary">
-        <h1>Oops! Terjadi Kesalahan 😢</h1>
-        <p>Sepertinya ada yang tidak beres. Detail error:</p>
-        <pre className="errorBox">{error.message}</pre>
-        <button onClick={resetErrorBoundary}>
-            Coba Lagi 🔄
-        </button>
-    </div>
-);
+const FallbackComponent = ({ error, resetErrorBoundary }) => {
+
+    const {language} = useLanguage();
+    return (
+        <div className="error-boundary">
+            <h1>{translations[language].error.title}</h1>
+            <p>{translations[language].error.desc}</p>
+            <pre className="errorBox">{error.message}</pre>
+            <button onClick={resetErrorBoundary}>
+                {translations[language].error.button} 🔄
+            </button>
+        </div>
+    )
+};
 
 const logError = (error, info) => {
     console.error("Error:", error);

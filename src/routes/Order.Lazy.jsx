@@ -152,7 +152,7 @@ function Order() {
                 }
             </form>
             {
-                loading ? <h2>{translations[language].loading}</h2> : <Cart cart={cart} checkout={checkout} />
+                loading ? <h2>{translations[language].loading}</h2> : <Cart cart={cart} setCart={setCart} checkout={checkout} />
             }
         </div>
     );

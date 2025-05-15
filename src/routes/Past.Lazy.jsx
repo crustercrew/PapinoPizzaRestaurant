@@ -11,44 +11,43 @@ export const Route = createFileRoute("/Past/Lazy")({
     component: PastOrdersRoute,
 })
 
+const currency = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+});
+
 function PastOrdersRoute() {
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1);
     const [selectedOrder, setSelectedOrder] = useState();
+    const { language } = useLanguage();
 
     const { isLoading, data } = useQuery({
         queryKey: ["past-orders", page],
         queryFn: () => getPastOrders(page),
-        staleTime: 30000,
-    })
+        staleTime: 15000,
+    });
 
     const { isLoading: isOrderLoading, data: orderData } = useQuery({
         queryKey: ["past-order", selectedOrder],
         queryFn: () => getPastOrder(selectedOrder),
         enabled: !!selectedOrder,
-        staleTime: 24 * 60 * 60 * 1000,
+        staleTime: 20000,
     });
 
-    const {language,setLanguage} = useLanguage();
     if (isLoading) {
         return (
-            <div className="pesanan-lama">
-                <h2>{translations[language].loading}</h2>
+            <div className="past-orders">
+                <h2>Loading...</h2>
             </div>
-        )
+        );
     }
 
-    const currency = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-    });
-
-
     return (
-        <div className="pesanan-lama">
+        <div className="past-orders">
             <table>
                 <thead>
                 <tr>
-                    <td>{translations[language].tableHistory.Id}</td>
+                    <td>{translations[language].tableHistory.id}</td>
                     <td>{translations[language].tableHistory.date}</td>
                     <td>{translations[language].tableHistory.time}</td>
                 </tr>
@@ -72,23 +71,23 @@ function PastOrdersRoute() {
                     {translations[language].page.prev}
                 </button>
                 <div>{page}</div>
-                <button disabled={data.length < 10} onClick={() => setPage(page + 1)}>
+                <button onClick={() => setPage(page + 1)} disabled={data.length < 10}>
                     {translations[language].page.next}
                 </button>
             </div>
             {selectedOrder ? (
                 <Modal>
-                    <h2>Order number {selectedOrder}</h2>
+                    <h2>{translations[language].OrderNumber} {selectedOrder}</h2>
                     {!isOrderLoading ? (
                         <table>
                             <thead>
                             <tr>
-                                <td>Image</td>
-                                <td>Name</td>
-                                <td>Size</td>
-                                <td>Quantity</td>
-                                <td>Price</td>
-                                <td>Total</td>
+                                <td>{translations[language].pastHistoryDetail.id}</td>
+                                <td>{translations[language].pastHistoryDetail.name}</td>
+                                <td>{translations[language].pastHistoryDetail.size}</td>
+                                <td>{translations[language].pastHistoryDetail.quantity}</td>
+                                <td>{translations[language].pastHistoryDetail.price}</td>
+                                <td>{translations[language].pastHistoryDetail.total}</td>
                             </tr>
                             </thead>
                             <tbody>
@@ -107,11 +106,11 @@ function PastOrdersRoute() {
                             </tbody>
                         </table>
                     ) : (
-                        <p>Loading...</p>
+                        <p>{translations[language].loading}...</p>
                     )}
-                    <button onClick={() => setSelectedOrder()}>Tutup</button>
+                    <button onClick={() => setSelectedOrder()}>{translations[language].close}</button>
                 </Modal>
             ) : null}
         </div>
-    )
+    );
 }

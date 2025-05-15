@@ -14,14 +14,31 @@ const translations = {
         Order:"Pesanan",
         PastOrder:"Pesanan Sebelumnya",
         tableHistory:{
-            Id:"Id",
+            Id:"Id Pesanan",
             date:"Tanggal",
             time:"Waktu"
         },
         page:{
             next:"Berikutnya",
             prev:"Sebelumnya"
-        }
+        },
+        pastHistoryDetail:{
+            Id:"Id",
+            name:"Nama",
+            size:"Ukuran",
+            quantity:"Jumlah",
+            image:"Gambar",
+            price:"Harga",
+            total:"Total",
+        },
+        close:"Tutup",
+        OrderNumber:"Nomor Pesanan",
+        error:{
+            title: "Oops! Terjadi Kesalahan 😢",
+            desc: "Sepertinya ada yang tidak beres. Detail error:",
+            button: "coba lagi"
+        },
+        removeItem:"Hapus Item",
     },
     en: {
         title: "Create OrderLazy",
@@ -38,14 +55,31 @@ const translations = {
         Order:"Order",
         PastOrder:"Past Order",
         tableHistory:{
-            Id:"Id",
+            Id:"Order Id",
             date:"date",
             time:"time"
         },
         page:{
             next:"Next",
             prev:"Prev"
-        }
+        },
+        pastHistoryDetail:{
+            Id:"Id",
+            name:"Name",
+            size:"Size",
+            quantity:"Quantity",
+            image:"Image",
+            price:"Price",
+            total:"Total",
+        },
+        close:"Close",
+        OrderNumber:"Order Number",
+        error:{
+            title: "Oops! An Error Occurred 😢",
+            desc: "It seems something went wrong. Error details:",
+            button: "try again"
+        },
+        removeItem:"Remove Item",
     },
 };
 
