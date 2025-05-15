@@ -8,8 +8,8 @@ const intl = new Intl.NumberFormat("en-US", {
 });
 
 const PizzaOfTheDay = () => {
-    const { pizza, error } = usePizzaOfTheDay();
-    const { language, setLanguage } = useLanguage();
+    const { pizza } = usePizzaOfTheDay();
+    const { language } = useLanguage();
 
     if (!pizza) {
         return <div>{translations[language].loading}</div>;

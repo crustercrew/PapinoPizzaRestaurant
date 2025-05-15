@@ -95,7 +95,7 @@ nav > a {
 h2 {
   font-family: var(--font);
   font-size: 40px;
-  line-height: auto;
+  line-height: normal;
   font-weight: 400;
   color: var(--primary);
   text-align: center;

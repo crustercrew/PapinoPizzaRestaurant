@@ -7,7 +7,7 @@ export const Route = createLazyFileRoute('/')({
 })
 
 function index() {
-    const { language, setLanguage } = useLanguage();
+    const { language } = useLanguage();
   return (
       <div className="index">
           <div className="index-brand">

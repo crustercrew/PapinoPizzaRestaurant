@@ -1,5 +1,4 @@
 import {useLanguage} from "../../context/Context.jsx";
-import Translations from "../../context/Translate.jsx";
 import translations from "../../context/Translate.jsx";
 
 const currency = new Intl.NumberFormat("en-US", {
@@ -8,7 +7,7 @@ const currency = new Intl.NumberFormat("en-US", {
 });
 
 export default function Cart({cart, checkout}){
-    const { language, setLanguage } = useLanguage();
+    const { language } = useLanguage();
     let total = 0;
     for (let i = 0; i < cart.length; i++) {
         const current = cart[i];
